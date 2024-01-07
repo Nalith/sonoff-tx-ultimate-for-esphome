@@ -218,7 +218,7 @@ binary_sensor:
       - script.execute: refresh_led_default
 
   - platform: template
-    name: "Swipe up"
+    name: "Swipe Up"
     id: swipe_up
     on_press:
       - delay: ${button_on_time}
@@ -228,7 +228,7 @@ binary_sensor:
       - script.execute: refresh_led_default
 
   - platform: template
-    name: "swipe down"
+    name: "Swipe Down"
     id: swipe_down
     on_press:
       - delay: ${button_on_time}
