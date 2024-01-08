@@ -458,7 +458,7 @@ uart:
     sequence:
       - lambda: UARTDebug::log_hex(direction, bytes, ' ');
 
-tx_ultimate_touch:
+tx_ultimate_touch_us:
   id: tx_touch
   uart: my_uart
 
