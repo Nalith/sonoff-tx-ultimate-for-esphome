@@ -855,7 +855,7 @@ script:
                             condition:
                               lambda: "return state==13;"
                             then:
-                              # SWIPE LEFT
+                              # SWIPE UP
                               - light.turn_on:
                                   id: leds
                                   red: 0
@@ -866,7 +866,7 @@ script:
                             condition:
                               lambda: "return state==12;"
                             then:
-                              # SWIPE RIGHT
+                              # SWIPE DOWN
                               - light.turn_on:
                                   id: leds
                                   red: 0
