@@ -92,7 +92,7 @@ namespace esphome
                 this->swipe_trigger_left_.trigger(tp);
                 break;
 
-            case TOUCH_STATE_SWIPE_RIGHT:
+            case TOUCH_STATE_SWIPE_DOWN:
                 ESP_LOGD(TAG, "Swipe Right (x=%d)", tp.x);
                 this->swipe_trigger_right_.trigger(tp);
                 break;
@@ -120,7 +120,7 @@ namespace esphome
             if (state != TOUCH_STATE_PRESS &&
                 state != TOUCH_STATE_RELEASE &&
                 state != TOUCH_STATE_SWIPE_LEFT &&
-                state != TOUCH_STATE_SWIPE_RIGHT &&
+                state != TOUCH_STATE_SWIPE_DOWN &&
                 state != TOUCH_STATE_ALL_FIELDS)
             {
                 return false;
@@ -151,7 +151,7 @@ namespace esphome
                 return bytes[5];
                 break;
 
-            case TOUCH_STATE_SWIPE_RIGHT:
+            case TOUCH_STATE_SWIPE_DOWN:
                 return bytes[5];
                 break;
 
@@ -177,9 +177,9 @@ namespace esphome
 
             if (state == TOUCH_STATE_SWIPE)
             {
-                if (bytes[5] == TOUCH_STATE_SWIPE_RIGHT)
+                if (bytes[5] == TOUCH_STATE_SWIPE_DOWN)
                 {
-                    state = TOUCH_STATE_SWIPE_RIGHT;
+                    state = TOUCH_STATE_SWIPE_DOWN;
                 }
                 else if (bytes[5] == TOUCH_STATE_SWIPE_LEFT)
                 {
