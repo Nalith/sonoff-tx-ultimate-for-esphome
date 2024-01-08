@@ -93,8 +93,8 @@ namespace esphome
                 break;
 
             case TOUCH_STATE_SWIPE_DOWN:
-                ESP_LOGD(TAG, "Swipe Right (x=%d)", tp.x);
-                this->swipe_trigger_right_.trigger(tp);
+                ESP_LOGD(TAG, "Swipe Down (x=%d)", tp.x);
+                this->swipe_trigger_down_.trigger(tp);
                 break;
 
             case TOUCH_STATE_ALL_FIELDS:
