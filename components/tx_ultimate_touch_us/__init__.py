@@ -84,7 +84,7 @@ async def register_tx_ultimate_touch(var, config):
 
     if CONF_ON_SWIPE_DOWN in config:
         await automation.build_automation(
-            var.get_swipe_right_trigger(),
+            var.get_swipe_down_trigger(),
             [(TouchPoint, "touch")],
             config[CONF_ON_SWIPE_DOWN],
         )
