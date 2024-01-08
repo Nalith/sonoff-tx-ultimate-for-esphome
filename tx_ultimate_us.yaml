@@ -477,7 +477,7 @@ tx_ultimate_touch_us:
     - lambda: >
         ESP_LOGD("tx_ultimate_touch.on_release", "Release Position: %d / State: %d", touch.x, touch.state);
 
-  on_swipe_left:
+  on_swipe_up:
     - script.execute: led_on_swipe_up
 
     - switch.turn_on: vibra
@@ -487,7 +487,7 @@ tx_ultimate_touch_us:
         state: ON
 
     - lambda: >
-        ESP_LOGD("tx_ultimate_touch.on_swipe_up", "Swipe Left Position: %d / State: %d", touch.x, touch.state);
+        ESP_LOGD("tx_ultimate_touch.on_swipe_up", "Swipe Up Position: %d / State: %d", touch.x, touch.state);
 
   on_swipe_down:
     - script.execute: led_on_swipe_down
