@@ -782,33 +782,6 @@ script:
                   - binary_sensor.template.publish:
                       id: touchfield_2
                       state: ON
-
-      - if:
-          condition:
-            lambda: "return ${relay_count}==3;"
-          then:
-            - if:
-                condition:
-                  lambda: "return pos <= 3;"
-                then:
-                  - binary_sensor.template.publish:
-                      id: touchfield_1
-                      state: ON
-
-                else:
-                  - if:
-                      condition:
-                        lambda: "return pos <= 7;"
-                      then:
-                        - binary_sensor.template.publish:
-                            id: touchfield_2
-                            state: ON
-
-                      else:
-                        - binary_sensor.template.publish:
-                            id: touchfield_3
-                            state: ON
-
   - id: touch_led_marker
     mode: restart
     parameters:
