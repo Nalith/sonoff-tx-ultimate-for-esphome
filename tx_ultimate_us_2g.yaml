@@ -78,9 +78,9 @@ esphome:
       - binary_sensor.template.publish:
           id: touchfield_2
           state: OFF
-      - binary_sensor.template.publish:
-          id: touchfield_3
-          state: OFF
+#      - binary_sensor.template.publish:
+#          id: touchfield_3
+#          state: OFF
       - binary_sensor.template.publish:
           id: multi_touch
           state: OFF
@@ -129,7 +129,6 @@ improv_serial:
 captive_portal:
 
 external_components:
-#  - source: /config/esphome/my_components
   - source:
       type: git
       url: https://github.com/Nalith/sonoff-tx-ultimate-for-esphome
@@ -202,20 +201,20 @@ binary_sensor:
           state: OFF
       - script.execute: refresh_led_default
 
-  - platform: template
-    name: "Touchfield 3"
-    id: touchfield_3
-    on_press:
-      - if:
-          condition:
-            lambda: "return ${toggle_relay_3_on_touch};"
-          then:
-            - switch.toggle: relay_3
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: touchfield_3
-          state: OFF
-      - script.execute: refresh_led_default
+#  - platform: template
+#    name: "Touchfield 3"
+#    id: touchfield_3
+#    on_press:
+#      - if:
+#          condition:
+#            lambda: "return ${toggle_relay_3_on_touch};"
+#          then:
+#            - switch.toggle: relay_3
+#      - delay: ${button_on_time}
+#      - binary_sensor.template.publish:
+#          id: touchfield_3
+#          state: OFF
+#      - script.execute: refresh_led_default
 
   - platform: template
     name: "Swipe Up"
@@ -282,17 +281,17 @@ switch:
       then:
         - script.execute: refresh_led_default
 
-  - platform: gpio
-    id: relay_3
-    name: "${friendly_name} L3"
-    pin: ${relay_3_pin}
-    restore_mode: RESTORE_DEFAULT_OFF
-    on_turn_on:
-      then:
-        - script.execute: refresh_led_default
-    on_turn_off:
-      then:
-        - script.execute: refresh_led_default
+#  - platform: gpio
+#    id: relay_3
+#    name: "${friendly_name} L3"
+#    pin: ${relay_3_pin}
+#    restore_mode: RESTORE_DEFAULT_OFF
+#    on_turn_on:
+#      then:
+#        - script.execute: refresh_led_default
+#    on_turn_off:
+#      then:
+#        - script.execute: refresh_led_default
 
   - platform: gpio
     id: vibra
