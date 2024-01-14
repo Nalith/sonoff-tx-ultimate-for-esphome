@@ -572,7 +572,7 @@ script:
 
       - if:
           condition:
-            lambda: "return (${relay_count}==2 && id(relay_2).state) || (${relay_count}==3 && id(relay_3).state);"
+            lambda: "return (${relay_count}==2 && id(relay_2).state);"
           then:
             - script.execute: led_on_button_right
           else:
