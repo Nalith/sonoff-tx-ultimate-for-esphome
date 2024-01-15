@@ -1,4 +1,7 @@
-<<: !include ../tx_ultimate_us_base.yaml
+<<: 
+  - !include tx_ultimate_us_substitutions.yaml
+  - !include tx_ultimate_us_base.yaml
+
 
 substitutions:
   relay_count: "2"
