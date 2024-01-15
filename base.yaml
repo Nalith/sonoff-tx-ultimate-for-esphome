@@ -60,3 +60,31 @@ substitutions:
   audio_sdata_pin: GPIO15
 
   touchpanel_power_pin: GPIO5
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+#  hardware_uart: UART2
+  level: DEBUG
+  logs:
+    binary_sensor: INFO
+    light: INFO
+    script: INFO
+    switch: INFO
+    tx_ultimate_touch: INFO
+    uart_debug: INFO
+
+api:
+
+ota:
+
+wifi:
+  ap:
+    password: "12345678"
+    
+improv_serial:
+
+captive_portal:    

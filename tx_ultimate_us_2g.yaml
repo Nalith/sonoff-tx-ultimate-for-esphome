@@ -37,37 +37,9 @@ esphome:
       - script.execute: refresh_led_default
       - script.execute: refresh_nightlight
 
-esp32:
-  board: esp32dev
-  framework:
-    type: arduino
-
-logger:
-#  hardware_uart: UART2
-  level: DEBUG
-  logs:
-    binary_sensor: INFO
-    light: INFO
-    script: INFO
-    switch: INFO
-    tx_ultimate_touch: INFO
-    uart_debug: INFO
-
 dashboard_import:
   package_import_url: github://Nalith/sonoff-tx-ultimate-for-esphome/tx_ultimate.yaml@main
   import_full_config: false
-
-api:
-
-ota:
-
-wifi:
-  ap:
-    password: "12345678"
-    
-improv_serial:
-
-captive_portal:
 
 external_components:
   - source:
