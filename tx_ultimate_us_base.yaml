@@ -1,9 +1,9 @@
-packages:
-  remote_package:
-    url: https://github.com/Nalith/sonoff-tx-ultimate-for-esphome
-    ref: main # optional
-    files: [tx_ultimate_us_substitutions.yaml]
-    refresh: 1s
+#packages:
+  #remote_package:
+    #url: https://github.com/Nalith/sonoff-tx-ultimate-for-esphome
+    #ref: main # optional
+    #files: [tx_ultimate_us_substitutions.yaml]
+    #refresh: 1s
 
 esp32:
   board: esp32dev
