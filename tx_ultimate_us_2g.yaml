@@ -41,38 +41,6 @@ dashboard_import:
   package_import_url: github://Nalith/sonoff-tx-ultimate-for-esphome/tx_ultimate.yaml@main
   import_full_config: false
 
-globals:
-  - id: nightlight_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${nightlight_color}
-  - id: button_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${button_color}
-  - id: long_press_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${long_press_color}
-  - id: multi_touch_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${multi_touch_color}
-  - id: swipe_up_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${swipe_up_color}
-  - id: swipe_down_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${swipe_down_color}
-  - id: touch_color
-    type: int [3]
-    restore_value: no
-    initial_value: ${touch_color}    
-
-
-
 binary_sensor:
   - platform: template
     name: "Touchfield 1"
