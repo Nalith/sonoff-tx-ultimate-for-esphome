@@ -2,6 +2,12 @@
   - !include tx_ultimate_us_substitutions.yaml
   - !include tx_ultimate_us_base.yaml
 
+packages:
+  remote_package:
+    url: https://github.com/Nalith/sonoff-tx-ultimate-for-esphome
+    ref: main # optional
+    files: [tx_ultimate_us_substitutions.yaml, tx_ultimate_us_base.yaml]
+    refresh: 1s
 
 substitutions:
   relay_count: "2"
