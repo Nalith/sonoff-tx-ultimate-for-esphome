@@ -1,7 +1,3 @@
-<<: 
-  - !include tx_ultimate_us_substitutions.yaml
-  - !include tx_ultimate_us_base.yaml
-
 packages:
   remote_package:
     url: https://github.com/Nalith/sonoff-tx-ultimate-for-esphome
