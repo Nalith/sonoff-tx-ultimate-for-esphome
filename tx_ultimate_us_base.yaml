@@ -159,3 +159,17 @@ uart:
       bytes: 2048
     sequence:
       - lambda: UARTDebug::log_hex(direction, bytes, ' ');
+
+time:
+  - platform: homeassistant
+  - platform: sntp
+    on_time:
+      # Every 5 minutes
+      - seconds: 0
+        minutes: /5
+        then:
+          - script.execute: refresh_nightlight
+
+sun:
+  latitude: ${latitude}
+  longitude: ${longitude}      
