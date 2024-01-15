@@ -296,38 +296,6 @@ light:
           speed: 10
           width: 20
 
-media_player:
-  - platform: i2s_audio
-    id: media_out
-    name: ${friendly_name} Player
-    dac_type: external
-    i2s_dout_pin: ${audio_sdata_pin}
-    i2s_audio_id: audio_i2s
-    i2s_comm_fmt: lsb
-    mode: mono
-
-i2s_audio:
-  id: audio_i2s
-  i2s_lrclk_pin: ${audio_lrclk_pin}
-  i2s_bclk_pin: ${audio_bclk_pin}
-
-uart:
-  tx_pin: ${uart_tx_pin}
-  rx_pin: ${uart_rx_pin}
-  id: my_uart
-  baud_rate: 115200
-  data_bits: 8
-  stop_bits: 1
-  parity: NONE
-  debug:
-    direction: RX
-    dummy_receiver: false
-    after:
-      timeout: 2s
-      bytes: 2048
-    sequence:
-      - lambda: UARTDebug::log_hex(direction, bytes, ' ');
-
 tx_ultimate_touch_us:
   id: tx_touch
   uart: my_uart

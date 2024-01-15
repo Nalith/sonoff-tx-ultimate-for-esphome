@@ -311,23 +311,6 @@ i2s_audio:
   i2s_lrclk_pin: ${audio_lrclk_pin}
   i2s_bclk_pin: ${audio_bclk_pin}
 
-uart:
-  tx_pin: ${uart_tx_pin}
-  rx_pin: ${uart_rx_pin}
-  id: my_uart
-  baud_rate: 115200
-  data_bits: 8
-  stop_bits: 1
-  parity: NONE
-  debug:
-    direction: RX
-    dummy_receiver: false
-    after:
-      timeout: 2s
-      bytes: 2048
-    sequence:
-      - lambda: UARTDebug::log_hex(direction, bytes, ' ');
-
 tx_ultimate_touch_us:
   id: tx_touch
   uart: my_uart
