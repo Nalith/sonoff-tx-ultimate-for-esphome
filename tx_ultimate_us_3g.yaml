@@ -37,9 +37,9 @@ esphome:
       - script.execute: refresh_led_default
       - script.execute: refresh_nightlight
 
-dashboard_import:
-  package_import_url: github://Nalith/sonoff-tx-ultimate-for-esphome/tx_ultimate.yaml@main
-  import_full_config: false
+#dashboard_import:
+  #package_import_url: github://Nalith/sonoff-tx-ultimate-for-esphome/tx_ultimate.yaml@main
+  #import_full_config: false
 
 binary_sensor:
   - platform: template
