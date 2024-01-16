@@ -254,7 +254,7 @@ tx_ultimate_touch_us:
         state: ON
 
     - lambda: >
-        ESP_LOGD("tx_ultimate_touch.on_swipe_down", "Swipe Right Position: %d / State: %d", touch.x, touch.state);
+        ESP_LOGD("tx_ultimate_touch.on_swipe_down", "Swipe Down Position: %d / State: %d", touch.x, touch.state);
 
   on_full_touch_release:
     - script.execute: led_on_full_touch
