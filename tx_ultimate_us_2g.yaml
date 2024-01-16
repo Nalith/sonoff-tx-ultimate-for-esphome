@@ -422,6 +422,9 @@ script:
           green: !lambda "return id(swipe_down_color)[1]/100.0;"
           blue:  !lambda "return id(swipe_down_color)[2]/100.0;"
           effect: ${swipe_down_effect}
+      - delay: 1s
+      - light.turn_off: leds_left_and_right
+
 
   - id: led_on_full_touch
     mode: restart
