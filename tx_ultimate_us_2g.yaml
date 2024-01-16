@@ -154,16 +154,20 @@ light:
         - script.execute: refresh_led_default
 
   - platform: partition
-    name: "LEDs Button right"
-    id: leds_button_right
+    name: "LEDs Button 1"
+    id: leds_button_1
     internal: true
     segments:
       - id: leds
-        from: 9
-        to: 14
+        from: 0
+        to: 4
+      - id: leds
+        from: 20
+        to: 24
+
   - platform: partition
-    name: "LEDs Button middle"
-    id: leds_button_middle
+    name: "LEDs Button 2"
+    id: leds_button_2
     internal: true
     segments:
       - id: leds
@@ -171,15 +175,7 @@ light:
         to: 5
       - id: leds
         from: 18
-        to: 21
-  - platform: partition
-    name: "LEDs Button left"
-    id: leds_button_left
-    internal: true
-    segments:
-      - id: leds
-        from: 25
-        to: 30
+        to: 21        
 
   - platform: partition
     name: "LEDs Nightlight"
@@ -245,23 +241,23 @@ script:
   - id: refresh_led_default
     mode: restart
     then:
-      - light.turn_off: leds_top
+     # - light.turn_off: leds_top
 
       - if:
           condition:
-            lambda: "return (${relay_count}>1 && id(relay_1).state) ;"
+            lambda: "return (id(relay_1).state) ;"
           then:
-            - script.execute: led_on_button_left
+            - script.execute: led_on_button_1
           else:
-            - script.execute: led_off_button_left
+            - script.execute: led_off_button_1
 
       - if:
           condition:
-            lambda: "return (${relay_count}==2 && id(relay_2).state);"
+            lambda: "return (id(relay_2).state);"
           then:
-            - script.execute: led_on_button_right
+            - script.execute: led_on_button_2
           else:
-            - script.execute: led_off_button_right
+            - script.execute: led_off_button_2
 
       - if:
           condition:
@@ -271,38 +267,27 @@ script:
           else:
             - light.turn_off: leds_nightlight
 
-  - id: led_on_button_left
+  - id: led_on_button_1
     mode: restart
     then:
       - light.turn_on:
-          id: leds_button_left
+          id: leds_button_1
           brightness: ${button_brightness}
           red: !lambda "return id(button_color)[0]/100.0;"
           green: !lambda "return id(button_color)[1]/100.0;"
           blue:  !lambda "return id(button_color)[2]/100.0;"
 
-  - id: led_on_button_middle
+  - id: led_on_button_2
     mode: restart
     then:
       - light.turn_on:
-          id: leds_button_middle
+          id: leds_button_2
           brightness: ${button_brightness}
           red: !lambda "return id(button_color)[0]/100.0;"
           green: !lambda "return id(button_color)[1]/100.0;"
           blue:  !lambda "return id(button_color)[2]/100.0;"
 
-  - id: led_on_button_right
-    mode: restart
-    then:
-      - light.turn_on:
-          id: leds_button_right
-          brightness: ${button_brightness}
-          red: !lambda "return id(button_color)[0]/100.0;"
-          green: !lambda "return id(button_color)[1]/100.0;"
-          blue:  !lambda "return id(button_color)[2]/100.0;"
-
-
-  - id: led_off_button_left
+  - id: led_off_button_1
     mode: restart
     then:
       - if:
@@ -310,16 +295,16 @@ script:
             lambda: "return id(nightlight).state || id(nightlight_active).state;"
           then:
             - light.turn_on:
-                id: leds_button_left
+                id: leds_button_1
                 brightness: ${nightlight_brightness}
                 red: !lambda "return id(nightlight_color)[0]/100.0;"
                 green: !lambda "return id(nightlight_color)[1]/100.0;"
                 blue:  !lambda "return id(nightlight_color)[2]/100.0;"
           else:
             - light.turn_off:
-                id: leds_button_left
+                id: leds_button_1
 
-  - id: led_off_button_middle
+  - id: led_off_button_2
     mode: restart
     then:
       - if:
@@ -327,33 +312,14 @@ script:
             lambda: "return id(nightlight).state || id(nightlight_active).state;"
           then:
             - light.turn_on:
-                id: leds_button_middle
+                id: leds_button_2
                 brightness: ${nightlight_brightness}
                 red: !lambda "return id(nightlight_color)[0]/100.0;"
                 green: !lambda "return id(nightlight_color)[1]/100.0;"
                 blue:  !lambda "return id(nightlight_color)[2]/100.0;"
           else:
             - light.turn_off:
-                id: leds_button_middle
-
-
-  - id: led_off_button_right
-    mode: restart
-    then:
-      - if:
-          condition:
-            lambda: "return id(nightlight).state || id(nightlight_active).state;"
-          then:
-            - light.turn_on:
-                id: leds_button_right
-                brightness: ${nightlight_brightness}
-                red: !lambda "return id(nightlight_color)[0]/100.0;"
-                green: !lambda "return id(nightlight_color)[1]/100.0;"
-                blue:  !lambda "return id(nightlight_color)[2]/100.0;"
-          else:
-            - light.turn_off:
-                id: leds_button_right
-
+                id: leds_button_2
 
   - id: led_on_nightlight
     mode: restart
