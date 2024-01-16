@@ -129,58 +129,6 @@ switch:
 #      then:
 #        - script.execute: refresh_led_default
 
-  - platform: gpio
-    id: vibra
-    pin: ${vibra_motor_pin}
-    name: "${friendly_name} Vibration"
-    restore_mode: ALWAYS_OFF
-    on_turn_on:
-      - delay: ${vibra_time}
-      - switch.turn_off: vibra
-
-  - platform: gpio
-    id: pa_power
-    pin: ${pa_power_pin}
-    name: "PA Power"
-    internal: true
-    restore_mode: ALWAYS_ON
-
-  - platform: gpio
-    name: "touch panel power"
-    pin:
-      number: ${touchpanel_power_pin}
-      inverted: true
-    id: touch_power
-    internal: true
-    restore_mode: RESTORE_DEFAULT_ON
-
-  - platform: template
-    name: "Nightlight"
-    id: nightlight
-    internal: true
-    optimistic: true
-    restore_mode: RESTORE_DEFAULT_OFF
-    on_turn_on:
-      then:
-        - script.execute: refresh_led_default
-    on_turn_off:
-      then:
-        - script.execute: refresh_led_default
-
-  - platform: template
-    name: "Nightlight"
-    id: nightlight_active
-    optimistic: true
-    restore_mode: RESTORE_DEFAULT_OFF
-    on_turn_on:
-      then:
-        - script.execute: refresh_led_default
-    on_turn_off:
-      then:
-        - script.execute: refresh_led_default
-
-  - platform: restart
-    name: "${friendly_name} Restart"
 
 light:
   - platform: neopixelbus
