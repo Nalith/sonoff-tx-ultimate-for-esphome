@@ -148,25 +148,6 @@ light:
           name: "Pulse"
           transition_length: 1.4s
           update_interval: 1s
-      - addressable_lambda:
-          name: "Swipe Down Effect"
-          update_interval: 100ms
-          lambda: |-
-            static int step = 0;
-            static const int pairs[9][2] = {
-                {0, 23}, {1, 22}, {2, 21}, {3, 20}, {4, 19},
-                {5, 18}, {6, 17}, {7, 16}, {8, 15}
-            };
-            // Turn off all LEDs
-            it.all() = ESPColor(0, 0, 0);
-            // Light up the specific pair of LEDs
-            if (step < 9) {
-                int led1 = pairs[step][0];
-                int led2 = pairs[step][1];
-                it[led1] = ESPColor(255, 255, 255); // adjust color as needed
-                it[led2] = ESPColor(255, 255, 255); // adjust color as needed
-                step++;
-            }           
 
     on_turn_off:
       then:
@@ -248,14 +229,21 @@ light:
           name: "Swipe Down Effect"
           update_interval: 100ms
           lambda: |-
-            static int current_led = 0;
+            static int step = 0;
+            static const int pairs[9][2] = {
+                {0, 23}, {1, 22}, {2, 21}, {3, 20}, {4, 19},
+                {5, 18}, {6, 17}, {7, 16}, {8, 15}
+            };
             // Turn off all LEDs
             it.all() = ESPColor(0, 0, 0);
-            // Light up the current LED and its pair
-            it[current_led] = ESPColor(255, 255, 255); // adjust color as needed
-            it[23 - current_led] = ESPColor(255, 255, 255); // paired LED
-            // Increment and wrap around
-            current_led = (current_led + 1) % 9;              
+            // Light up the specific pair of LEDs
+            if (step < 9) {
+                int led1 = pairs[step][0];
+                int led2 = pairs[step][1];
+                it[led1] = ESPColor(255, 255, 255); // adjust color as needed
+                it[led2] = ESPColor(255, 255, 255); // adjust color as needed
+                step++;
+            }          
 
 media_player:
   - platform: i2s_audio
