@@ -246,6 +246,8 @@ script:
   - id: refresh_nightlight
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: refresh_nightlight");    
       - if:
           condition:
             lambda: 'return "${nightlight}" == "on";'
@@ -263,14 +265,12 @@ script:
   - id: refresh_led_default
     mode: restart
     then:
-     # - light.turn_off: leds_top
-
+      - lambda: >
+          ESP_LOGD("script", "Running script: refresh_led_default"); 
       - if:
           condition:
             lambda: "return id(nightlight).state || id(nightlight_active).state;"
           then:
-            - lambda: >
-                ESP_LOGD("script", "Running script: led_on_nightlight");
             - script.execute: led_on_nightlight
           else:
             - light.turn_off: leds_nightlight
@@ -279,30 +279,24 @@ script:
           condition:
             lambda: "return (id(relay_1).state) ;"
           then:
-            - lambda: >
-                ESP_LOGD("script", "Running script: led_on_button_1");          
             - script.execute: led_on_button_1
           else:
-            - lambda: >
-                ESP_LOGD("script", "Running script: led_off_button_1");          
             - script.execute: led_off_button_1
 
       - if:
           condition:
             lambda: "return (id(relay_2).state);"
           then:
-            - lambda: >
-                ESP_LOGD("script", "Running script: led_on_button_2");          
             - script.execute: led_on_button_2
           else:
-            - lambda: >
-                ESP_LOGD("script", "Running script: led_off_button_2");          
             - script.execute: led_off_button_2
 
 
   - id: led_on_button_1
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_button_1");     
       - light.turn_on:
           id: leds_button_1
           brightness: ${button_brightness}
@@ -314,6 +308,8 @@ script:
   - id: led_on_button_2
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: leds_button_2");      
       - light.turn_on:
           id: leds_button_2
           brightness: ${button_brightness}
@@ -325,6 +321,8 @@ script:
   - id: led_off_button_1
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_off_button_1");
       - if:
           condition:
             lambda: "return id(nightlight).state || id(nightlight_active).state;"
@@ -344,6 +342,8 @@ script:
   - id: led_off_button_2
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_off_button_2");    
       - if:
           condition:
             lambda: "return id(nightlight).state || id(nightlight_active).state;"
@@ -358,11 +358,13 @@ script:
           else:
             - light.turn_off:
                 id: leds_button_2
-                transition_length: 0.15s
+                transition_length: 0.1s
 
   - id: led_on_nightlight
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_nightlight");    
       - light.turn_on:
           id: leds_nightlight
           brightness: ${nightlight_brightness}
@@ -380,6 +382,8 @@ script:
   - id: led_on_touch
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_touch");      
       #- light.turn_on:
           #id: leds_top
           #brightness: ${touch_brightness}
@@ -393,6 +397,8 @@ script:
   - id: led_on_swipe_up
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_swipe_up");      
 #      - light.turn_on:
 #          id: leds_top
 #          brightness: ${swipe_up_brightness}
@@ -404,6 +410,8 @@ script:
   - id: led_on_swipe_down
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_swipe_down");      
 #      - light.turn_on:
 #          id: leds_left_and_right
 #          brightness: ${swipe_down_brightness}
@@ -418,6 +426,8 @@ script:
   - id: led_on_full_touch
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_full_touch");      
 #      - light.turn_on:
 #          id: leds_top
 #          brightness: ${multi_touch_brightness}
@@ -430,6 +440,8 @@ script:
   - id: led_on_long_touch
     mode: restart
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: led_on_long_touch");      
 #      - light.turn_on:
 #          id: leds_top
 #          brightness: ${long_press_brightness}
@@ -444,6 +456,8 @@ script:
     parameters:
       pos: int
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: handle_release");      
       - if:
           condition:
             lambda: "return ${relay_count}==1;"
@@ -474,6 +488,8 @@ script:
       state: int
       pos: int
     then:
+      - lambda: >
+          ESP_LOGD("script", "Running script: touch_led_marker");      
       - if:
           condition:
             lambda: "return state==1;"
