@@ -56,11 +56,12 @@ binary_sensor:
             lambda: "return ${toggle_relay_1_on_touch};"
           then:
             - switch.toggle: relay_1
+          else:
+            - script.execute: refresh_led_default
       - delay: ${button_on_time}
       - binary_sensor.template.publish:
           id: touchfield_1
           state: OFF
-      - script.execute: refresh_led_default
 
   - platform: template
     name: "Touchfield 2"
@@ -71,11 +72,12 @@ binary_sensor:
             lambda: "return ${toggle_relay_2_on_touch};"
           then:
             - switch.toggle: relay_2
+          else:
+            - script.execute: refresh_led_default            
       - delay: ${button_on_time}
       - binary_sensor.template.publish:
           id: touchfield_2
           state: OFF
-      - script.execute: refresh_led_default
 
 #  - platform: template
 #    name: "Touchfield 3"
