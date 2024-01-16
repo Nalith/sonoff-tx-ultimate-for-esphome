@@ -459,28 +459,16 @@ script:
           ESP_LOGD("script", "Running script: handle_release");      
       - if:
           condition:
-            lambda: "return ${relay_count}==1;"
+            lambda: "return pos <= 5;"
           then:
             - binary_sensor.template.publish:
                 id: touchfield_1
                 state: ON
 
-      - if:
-          condition:
-            lambda: "return ${relay_count}==2;"
-          then:
-            - if:
-                condition:
-                  lambda: "return pos <= 5;"
-                then:
-                  - binary_sensor.template.publish:
-                      id: touchfield_1
-                      state: ON
-
-                else:
-                  - binary_sensor.template.publish:
-                      id: touchfield_2
-                      state: ON
+          else:
+            - binary_sensor.template.publish:
+                id: touchfield_2
+                state: ON
   - id: touch_led_marker
     mode: restart
     parameters:
