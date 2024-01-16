@@ -92,46 +92,6 @@ binary_sensor:
 #          state: OFF
 #      - script.execute: refresh_led_default
 
-  - platform: template
-    name: "Swipe Up"
-    id: swipe_up
-    on_press:
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: swipe_up
-          state: OFF
-      - script.execute: refresh_led_default
-
-  - platform: template
-    name: "Swipe Down"
-    id: swipe_down
-    on_press:
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: swipe_down
-          state: OFF
-      - script.execute: refresh_led_default
-
-  - platform: template
-    name: "Multi Touch"
-    id: multi_touch
-    on_press:
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: multi_touch
-          state: OFF
-      - script.execute: refresh_led_default
-
-  - platform: template
-    name: "Long Press"
-    id: long_press
-    on_press:
-      - delay: ${button_on_time}
-      - binary_sensor.template.publish:
-          id: long_press
-          state: OFF
-      - script.execute: refresh_led_default
-
 switch:
   - platform: gpio
     id: relay_1
