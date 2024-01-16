@@ -259,13 +259,13 @@ script:
           else:
             - script.execute: led_off_button_2
 
-      - if:
-          condition:
-            lambda: "return id(nightlight).state || id(nightlight_active).state;"
-          then:
-            - script.execute: led_on_nightlight
-          else:
-            - light.turn_off: leds_nightlight
+#      - if:
+          #condition:
+            #lambda: "return id(nightlight).state || id(nightlight_active).state;"
+          #then:
+            #- script.execute: led_on_nightlight
+          #else:
+            #- light.turn_off: leds_nightlight
 
   - id: led_on_button_1
     mode: restart
