@@ -162,9 +162,9 @@ light:
     segments:
       - id: leds
         from: 1
-        to: 2
+        to: 1
       - id: leds
-        from: 21
+        from: 22
         to: 22
 
   - platform: partition
@@ -174,9 +174,9 @@ light:
     segments:
       - id: leds
         from: 6
-        to: 7
+        to: 6
       - id: leds
-        from: 16
+        from: 17
         to: 17        
 
   - platform: partition
