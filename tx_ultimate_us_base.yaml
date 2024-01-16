@@ -16,7 +16,7 @@ logger:
   logs:
     binary_sensor: INFO
     light: INFO
-    script: INFO
+    script: DEBUG
     switch: INFO
     tx_ultimate_touch: INFO
     uart_debug: INFO
