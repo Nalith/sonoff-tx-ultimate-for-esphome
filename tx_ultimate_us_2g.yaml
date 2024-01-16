@@ -148,6 +148,18 @@ light:
           name: "Pulse"
           transition_length: 1.4s
           update_interval: 1s
+      - addressable_lambda:
+          name: "Swipe Down Effect"
+          update_interval: 100ms
+          lambda: |-
+            static int current_led = 0;
+            // Turn off all LEDs
+            it.all() = ESPColor(0, 0, 0);
+            // Light up the current LED and its pair
+            it[current_led] = ESPColor(255, 255, 255); // adjust color as needed
+            it[23 - current_led] = ESPColor(255, 255, 255); // paired LED
+            // Increment and wrap around
+            current_led = (current_led + 1) % 9;             
 
     on_turn_off:
       then:
@@ -207,6 +219,36 @@ light:
           name: "Rainbow"
           speed: 10
           width: 20
+  - platform: partition
+    name: "Swipe Down"
+    id: leds_left_and_right
+    internal: true
+    segments:
+      - id: leds
+        from: 0
+        to: 8
+      - id: leds
+        from: 15
+        to: 23
+    effects:
+      - addressable_scan:
+          name: "Scan"
+      - addressable_rainbow:
+          name: "Rainbow"
+          speed: 10
+          width: 20
+      - addressable_lambda:
+          name: "Swipe Down Effect"
+          update_interval: 100ms
+          lambda: |-
+            static int current_led = 0;
+            // Turn off all LEDs
+            it.all() = ESPColor(0, 0, 0);
+            // Light up the current LED and its pair
+            it[current_led] = ESPColor(255, 255, 255); // adjust color as needed
+            it[23 - current_led] = ESPColor(255, 255, 255); // paired LED
+            // Increment and wrap around
+            current_led = (current_led + 1) % 9;              
 
 media_player:
   - platform: i2s_audio
@@ -287,6 +329,7 @@ script:
       - light.turn_on:
           id: leds_button_2
           brightness: ${button_brightness}
+          transition_length: 0.1s
           red: !lambda "return id(button_color)[0]/100.0;"
           green: !lambda "return id(button_color)[1]/100.0;"
           blue:  !lambda "return id(button_color)[2]/100.0;"
@@ -301,12 +344,14 @@ script:
             - light.turn_on:
                 id: leds_button_1
                 brightness: ${nightlight_brightness}
+                transition_length: 0.1s
                 red: !lambda "return id(nightlight_color)[0]/100.0;"
                 green: !lambda "return id(nightlight_color)[1]/100.0;"
                 blue:  !lambda "return id(nightlight_color)[2]/100.0;"
           else:
             - light.turn_off:
                 id: leds_button_1
+                transition_length: 0.1s
 
   - id: led_off_button_2
     mode: restart
@@ -318,12 +363,14 @@ script:
             - light.turn_on:
                 id: leds_button_2
                 brightness: ${nightlight_brightness}
+                transition_length: 0.1s
                 red: !lambda "return id(nightlight_color)[0]/100.0;"
                 green: !lambda "return id(nightlight_color)[1]/100.0;"
                 blue:  !lambda "return id(nightlight_color)[2]/100.0;"
           else:
             - light.turn_off:
                 id: leds_button_2
+                transition_length: 0.1s
 
   - id: led_on_nightlight
     mode: restart
@@ -369,7 +416,7 @@ script:
     mode: restart
     then:
       - light.turn_on:
-          id: leds_top
+          id: leds_left_and_right
           brightness: ${swipe_down_brightness}
           red: !lambda "return id(swipe_down_color)[0]/100.0;"
           green: !lambda "return id(swipe_down_color)[1]/100.0;"
