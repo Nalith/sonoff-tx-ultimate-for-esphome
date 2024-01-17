@@ -186,7 +186,20 @@ light:
     segments:
       - id: leds
         from: 0
-        to: 31
+        to: 0
+      - id: leds
+        from: 2
+        to: 5
+      - id: leds
+        from: 7
+        to: 16
+      - id: leds
+        from: 18
+        to: 21                
+      - id: leds
+        from: 23
+        to: 31        
+
 
   - platform: partition
     name: "Swipe Down"
