@@ -400,6 +400,26 @@ script:
           red: !lambda "return id(nightlight_color)[0]/100.0;"
           green: !lambda "return id(nightlight_color)[1]/100.0;"
           blue:  !lambda "return id(nightlight_color)[2]/100.0;"
+      - if:
+          condition:
+            lambda: "return !id(relay_1).state;"
+          then:
+            - light.turn_on:
+                id: leds_button_1
+                brightness: ${nightlight_brightness}
+                red: !lambda "return id(nightlight_color)[0]/100.0;"
+                green: !lambda "return id(nightlight_color)[1]/100.0;"
+                blue:  !lambda "return id(nightlight_color)[2]/100.0;"
+      - if:
+          condition:
+            lambda: "return !id(relay_2).state;"
+          then:
+            - light.turn_on:
+                id: leds_button_2
+                brightness: ${nightlight_brightness}
+                red: !lambda "return id(nightlight_color)[0]/100.0;"
+                green: !lambda "return id(nightlight_color)[1]/100.0;"
+                blue:  !lambda "return id(nightlight_color)[2]/100.0;"                
 
 #  - id: led_on_release
     #mode: restart
