@@ -272,7 +272,13 @@ script:
           then:
             - script.execute: led_on_nightlight
           else:
-            - light.turn_off: leds_nightlight
+            - if:
+                condition:
+                  and:
+                    - light.is_on: leds_nightlight
+                    - light.is_off: leds
+                then:
+                  - light.turn_off: leds_nightlight
 
       - if:
           condition:
@@ -308,7 +314,7 @@ script:
     mode: restart
     then:
       - lambda: >
-          ESP_LOGD("script", "Running script: leds_button_2");      
+          ESP_LOGD("script", "Running script: led_on_button_2");      
       - light.turn_on:
           id: leds_button_2
           brightness: ${button_brightness}
