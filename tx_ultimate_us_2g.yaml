@@ -278,8 +278,9 @@ script:
                     - light.is_on: leds_nightlight
                     - light.is_off: leds
                 then:
-                  - light.turn_off: leds_nightlight
-                    transition_length: 0.1s
+                  - light.turn_off:
+                      id: leds_nightlight
+                      transition_length: 0.1s
 
       - if:
           condition:
