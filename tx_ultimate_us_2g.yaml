@@ -279,6 +279,7 @@ script:
                     - light.is_off: leds
                 then:
                   - light.turn_off: leds_nightlight
+                    transition_length: 0.1s
 
       - if:
           condition:
