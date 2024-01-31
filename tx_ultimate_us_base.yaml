@@ -76,11 +76,11 @@ media_player:
   - platform: i2s_audio
     id: media_out
     name: ${friendly_name} Player
-    dac_type: internal
+    dac_type: external
     i2s_dout_pin: ${audio_sdata_pin}
     i2s_audio_id: audio_i2s
     i2s_comm_fmt: msb
-    mode: mono
+    mode: stereo
 
 i2s_audio:
   id: audio_i2s
