@@ -79,7 +79,7 @@ media_player:
     dac_type: external
     i2s_dout_pin: ${audio_sdata_pin}
     i2s_audio_id: audio_i2s
-    i2s_comm_fmt: msb
+    i2s_comm_fmt: lsb
     mode: stereo
 
 i2s_audio:
