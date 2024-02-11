@@ -239,20 +239,20 @@ light:
                 step++;
             }          
 
-media_player:
-  - platform: i2s_audio
-    id: media_out
-    name: ${friendly_name} Player
-    dac_type: external
-    i2s_dout_pin: ${audio_sdata_pin}
-    i2s_audio_id: audio_i2s
-    i2s_comm_fmt: lsb
-    mode: mono
+#media_player:
+  #- platform: i2s_audio
+    #id: media_out
+    #name: ${friendly_name} Player
+    #dac_type: external
+    #i2s_dout_pin: ${audio_sdata_pin}
+    #i2s_audio_id: audio_i2s
+    #i2s_comm_fmt: lsb
+    #mode: mono
 
-i2s_audio:
-  id: audio_i2s
-  i2s_lrclk_pin: ${audio_lrclk_pin}
-  i2s_bclk_pin: ${audio_bclk_pin}
+#i2s_audio:
+  #id: audio_i2s
+  #i2s_lrclk_pin: ${audio_lrclk_pin}
+  #i2s_bclk_pin: ${audio_bclk_pin}
 
 script:
   - id: refresh_nightlight
